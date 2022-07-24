@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<title>Movies</title>
+<body>
+    <h1>Movies</h1>
+    <ul>
+        {% for movie in movies %}
+            <li>{{ movie['original_title'] }}</li>
+            <iframe id ="myIframe" width="560" height="315" src = "http://www.youtube.com/embed/9pn8utbTtnU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <script>let src = "http://www.youtube.com/embed/${movie.id.video}"</script>
+        {% endfor %}
+    </ul>
+</body>
+<script>
+        let myIframe = document.getElementById("myIframe");
+        let endpoint = "https://www.youtube.com/embed/";
+        let url_string = window.location.href;
+        let url = new URL(url_string);
+        let src = url.searchParams.get("src");
+
+        let addsURL = endpoint+"?src="+src;
+        myIframe.src = addsURL;
+</script>
+</html>
